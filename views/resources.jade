@@ -1,0 +1,27 @@
+extends layout
+block name
+    -var title='Resources'
+block style
+    link(rel="stylesheet" href="/css/resources.css")
+
+block page
+    -var selected = 'Resources'
+
+block content
+    div(class="jumbotron"  style="margin:150px 250px 50px; padding:20px 40px 30px;")
+        h5.lead Meeting Documents
+        hr.my-4
+        p
+            | October 26, 2015 Boston
+            br
+            | Kickoff Meeting &nbsp
+            br
+            a(href="files/10.2015-slides.pptx" download) Slides &nbsp
+            | and &nbsp
+            a(href="files/minutes.10.26.15.docx" download) Minutes
+
+    div(class="jumbotron"  style="margin:20px 250px 50px; padding:20px 40px 30px;")
+        h5.lead Additional Resources
+        hr.my-4
+        p
+            a(href="files/overview-national-sobering-collaborative.docx" download) overview national sobering collaborative

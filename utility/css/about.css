@@ -1,0 +1,29 @@
+.lead {
+	font-weight: 400;
+	text-align: center;
+	font-size: 40px;
+}
+.long {
+	margin-left: 15%;
+	margin-right: 15%;
+	text-align: justify;
+	hyphens: auto;
+}
+.left {
+	hyphens: auto;
+	margin-left: 20%;
+}
+.right {
+	hyphens: auto;
+	margin-right: 20%;
+}
+.middle {
+	hyphens: auto;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+h2 {
+	color: #1abc9c;
+}	
+
+

@@ -1,0 +1,40 @@
+.panel-body h4 {
+    text-align: center;
+    margin-top: 200px;
+}
+
+h3.complete {
+    text-align: center;
+    margin-top: 200px;
+    margin-bottom: 400px;
+}
+
+.panel-footer {
+	background-color: transparent;
+	text-align: center;
+	margin-bottom: 400px;
+}
+
+.panel-footer .btn {
+	background-color: #34ad95;
+    outline: none;
+    color: #fff;
+    font-size: 17px;
+    height: auto;
+    font-weight: normal;
+    padding: 5px 20px;
+    margin: 5px 0;
+    border-color: #34ad95;
+}
+
+.panel-footer .btn:hover,
+.panel-footer .btn:focus {
+    color: #000;
+    transition: all 0.5s;
+}
+
+.progress-bar {
+	background-color: #59B2E0;
+	background-image: none;
+	box-shadow: none;
+}

@@ -1,0 +1,355 @@
+extends layout
+block name
+    -var title='View'
+block style
+    link(rel="stylesheet" href="/css/db_view.css")
+    link(rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css")
+    script(src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js")
+    script(src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js")
+
+block page
+    -var selected = 'Database'
+
+block content
+    div.container
+        div.row
+            div.col-md-10.col-md-offset-1
+                h4.tabelTitle.first Static Data: Basic Information
+                div.tableContainer
+                    table(id="staticBasic" class="table table-striped table-bordered" cellspacing="0" width="100%")
+                        thead
+                            tr
+                                th Name
+                                th Website
+                                th Address
+                                th Phone Number
+                                th Director
+                                th Contact Person
+                        tfoot
+                            tr
+                                th Name
+                                th Website
+                                th Address
+                                th Phone Number
+                                th Director
+                                th Contact Person
+
+        div.row
+            div.col-md-10.col-md-offset-1
+                h4.tabelTitle Static Data: Operational Information
+                div.tableContainer
+                    table(id="staticOperational" class="table table-striped table-bordered" cellspacing="0" width="100%")
+                        thead
+                            tr
+                                th Name
+                                th Financial Support
+                                th Annual Budget
+                                th Employed Staff
+                                th Hours of operation
+                                th Referring Parties
+                                th Pick ups from street
+                                th Measure alcohol levels
+                        tfoot
+                            tr
+                                th Name
+                                th Financial Support
+                                th Annual Budget
+                                th Employed Staff
+                                th Hours of operation
+                                th Referring Parties
+                                th Pick ups from street
+                                th Measure alcohol levels
+
+        div.row
+            div.col-md-10.col-md-offset-1
+                h4.tabelTitle Static Data: Services Offered
+                div.tableContainer
+                    table(id="staticServices" class="table table-striped table-bordered" cellspacing="0" width="100%")
+                        thead
+                            tr
+                                th Name
+                                th Case Management
+                                th Housing Referrals
+                                th Medical/psychiatric care
+                                th Medications dispensed
+                                th IV Fluids
+                                th Food
+                                th Showers
+                                th Laundry
+                                th Average length of stay
+                        tfoot
+                            tr
+                                th Name
+                                th Case Management
+                                th Housing Referrals
+                                th Medical/psychiatric care
+                                th Medications dispensed
+                                th IV Fluids
+                                th Food
+                                th Showers
+                                th Laundry
+                                th Average length of stay
+
+        div.row
+            div.col-md-10.col-md-offset-1
+                h4.tabelTitle Continuous Data: Census
+                div.tableContainer
+                    table(id="continuouscensus" class="table table-striped table-bordered" cellspacing="0" width="100%")
+                        thead
+                            tr
+                                th Name
+                                th From Date
+                                th To Date
+                                th Encounters
+                                th Unique Individuals
+                        tfoot
+                            tr
+                                th Name
+                                th From Date
+                                th To Date
+                                th Encounters
+                                th Unique Individuals
+
+        div.row
+                h4.tabelTitle Continuous Data: Demographics
+                div.tableContainer
+                    table(id="continuousdemographics" class="table table-striped table-bordered" cellspacing="0" width="100%")
+                        thead
+                            tr
+                                th(rowspan="2") Name
+                                th(rowspan="2") From Date
+                                th(rowspan="2") To Date
+                                th(colspan="2") Gender
+                                th(colspan="4") Race
+                                th(colspan="2") Enthnicity
+                                th(colspan="3") Housing
+                                th(rowspan="2") Breath Alcohol Level
+                            tr
+                                th Male
+                                th Female
+                                th White
+                                th Black
+                                th Asian
+                                th Other
+                                th Hispanic
+                                th Non-hispanic
+                                th Homeless Currently
+                                th Homeless in the Last Year
+                                th Supportive Housing
+                        tfoot
+                            tr
+                                th Name
+                                th From Date
+                                th To Date
+                                th Male
+                                th Female
+                                th White
+                                th Black
+                                th Asian
+                                th Other
+                                th Hispanic
+                                th Non-hispanic
+                                th Homeless Currently
+                                th Homeless in the Last Year
+                                th Supportive Housing
+                                th Breath Alcohol Level
+
+            div.row
+                    h4.tabelTitle Continuous Data: Outcomes
+                    div.tableContainer.last
+                        table(id="continuousoutcomes" class="table table-striped table-bordered" cellspacing="0" width="100%")
+                            thead
+                                tr
+                                    th(rowspan="2") Name
+                                    th(rowspan="2") From Date
+                                    th(rowspan="2") To Date
+                                    th(colspan="5") Discharge Destination
+                                    th(colspan="4") Complications
+                                    th(colspan="3") Services Utilized
+                                tr
+                                    th Street or Private
+                                    th Shelter
+                                    th Detox/Rehab Program
+                                    th Jail
+                                    th Hospital
+                                    th Death
+                                    th Hospitalization
+                                    th Arrests
+                                    th Alcohol Withdrawal
+                                    th Case Management
+                                    th Detox or Rehab Services
+                                    th Housing Services
+                            tfoot
+                                tr
+                                    th Name
+                                    th From Date
+                                    th To Date
+                                    th Street or Private
+                                    th Shelter
+                                    th Detox/Rehab Program
+                                    th Jail
+                                    th Hospital
+                                    th Death
+                                    th Hospitalization
+                                    th Arrests
+                                    th Alcohol Withdrawal
+                                    th Case Management
+                                    th Detox or Rehab Services
+                                    th Housing Services
+
+    script.
+
+        $('#staticBasic').DataTable({
+            "ajax": {
+                "url": "/database/query",
+                "dataSrc": function (d) {
+                    var dataSet = new Array();
+                    for (var i = 0; i < d.length; i++) {
+                        if (d[i].type == 'Static') {
+                            var item = new Array();
+                            item.push(d[i].centername);
+                            item.push(d[i].website);
+                            item.push(d[i].address);
+                            item.push(d[i].phone);
+                            item.push(d[i].director);
+                            item.push(d[i].contactperson);
+                            dataSet.push(item);
+                        }
+                    }
+                    return dataSet;
+                }
+            }
+        });
+
+        $('#staticOperational').DataTable({
+            "ajax": {
+                "url": "/database/query",
+                "dataSrc": function (d) {
+                    var dataSet = new Array();
+                    for (var i = 0; i < d.length; i++) {
+                        if (d[i].type == 'Static') {
+                            var item = new Array();
+                            item.push(d[i].centername);
+                            item.push(d[i].financialsupport);
+                            item.push(d[i].annualbudget);
+                            item.push(d[i].employedstaff);
+                            item.push(d[i].operationhours);
+                            item.push(d[i].referringparties);
+                            item.push(d[i].pickupsfromstreet);
+                            item.push(d[i].measurealcohollevels);
+                            dataSet.push(item);
+                        }
+                    }
+                    return dataSet;
+                }
+            }
+        });
+
+        $('#staticServices').DataTable({
+            "ajax": {
+                "url": "/database/query",
+                "dataSrc": function (d) {
+                    var dataSet = new Array();
+                    for (var i = 0; i < d.length; i++) {
+                        if (d[i].type == 'Static') {
+                            var item = new Array();
+                            item.push(d[i].centername);
+                            item.push(d[i].casemanagement);
+                            item.push(d[i].housingreferrals);
+                            item.push(d[i].accesstomedicalorpsychiatriccare);
+                            item.push(d[i].medicationsdispensed);
+                            item.push(d[i].IVfluids);
+                            item.push(d[i].food);
+                            item.push(d[i].showers);
+                            item.push(d[i].laundry);
+                            item.push(d[i].averagestaylength);
+                            dataSet.push(item);
+                        }
+                    }
+                    return dataSet;
+                }
+            }
+        });
+
+        $('#continuouscensus').DataTable({
+            "ajax": {
+                "url": "/database/query",
+                "dataSrc": function (d) {
+                    var dataSet = new Array();
+                    for (var i = 0; i < d.length; i++) {
+                        if (d[i].type == 'Continuous') {
+                            var item = new Array();
+                            item.push(d[i].centername);
+                            item.push(d[i].fromdate);
+                            item.push(d[i].todate);
+                            item.push(d[i].encounters);
+                            item.push(d[i].uniqueindividuals);
+                            dataSet.push(item);
+                        }
+                    }
+                    return dataSet;
+                }
+            }
+        });
+
+        $('#continuousdemographics').DataTable({
+            "ajax": {
+                "url": "/database/query",
+                "dataSrc": function (d) {
+                    var dataSet = new Array();
+                    for (var i = 0; i < d.length; i++) {
+                        if (d[i].type == 'Continuous') {
+                            var item = new Array();
+                            item.push(d[i].centername);
+                            item.push(d[i].fromdate);
+                            item.push(d[i].todate);
+                            item.push(d[i].gender.male);
+                            item.push(d[i].gender.female);
+                            item.push(d[i].race.white);
+                            item.push(d[i].race.black);
+                            item.push(d[i].race.asian);
+                            item.push(d[i].race.other);
+                            item.push(d[i].ethnicity.hispanic);
+                            item.push(d[i].ethnicity.nonhispanic);
+                            item.push(d[i].housing.homelesscurrently);
+                            item.push(d[i].housing.homelesslastyear);
+                            item.push(d[i].housing.supportivehousing);
+                            item.push(d[i].breathalcohol);
+                            dataSet.push(item);
+                        }
+                    }
+                    return dataSet;
+                }
+            }
+        });
+
+        $('#continuousoutcomes').DataTable({
+            "ajax": {
+                "url": "/database/query",
+                "dataSrc": function (d) {
+                    var dataSet = new Array();
+                    for (var i = 0; i < d.length; i++) {
+                        if (d[i].type == 'Continuous') {
+                            var item = new Array();
+                            item.push(d[i].centername);
+                            item.push(d[i].fromdate);
+                            item.push(d[i].todate);
+                            item.push(d[i].dischargedestination.streetprivate);
+                            item.push(d[i].dischargedestination.shelter);
+                            item.push(d[i].dischargedestination.detoxrehabprogram);
+                            item.push(d[i].dischargedestination.jail);
+                            item.push(d[i].dischargedestination.hospital);
+                            item.push(d[i].complications.death);
+                            item.push(d[i].complications.hospitalization);
+                            item.push(d[i].complications.arrests);
+                            item.push(d[i].complications.alcoholwithdrawal);
+                            item.push(d[i].servicesutilized.casemanagement);
+                            item.push(d[i].servicesutilized.detoxrehabservices);
+                            item.push(d[i].servicesutilized.housingservices);
+                            dataSet.push(item);
+                        }
+                    }
+                    return dataSet;
+                }
+            }
+        });

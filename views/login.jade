@@ -1,0 +1,115 @@
+extends layout
+block name
+    -var title='Login'
+block style
+    script(src="/js/login.js")
+    link(rel="stylesheet" href="/css/login.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js")
+block page
+    -var selected='Login'
+block content
+    -var centers = ['CARE Connection Sobering Center', 'CASPAR Inc. Emergency Services Center', 'Central City Concern Sobering Station', 'Dallas Serial Inebriate Program', 'Dutch Shisler Sobering Support Center', 'El Paso County Community Detoxification Facility', 'MOC Triage/Assessment Center', 'Metropolitan Assessment and Treatment Services (MATS)', 'Milestone Foundation', 'Room in the Inn', 'San Francisco Sobering Center', 'Santa Barbara Community Sobering Center', 'Sobering Center of Tacoma (MDC)', 'Star of Hope/Houston Recovery Center', 'Volunteers of America Sobering Center/Serial Inebriate Program', 'Willamette Family Sobering Station/Buckley Center', 'Yukon Kuskokwim Health Corporation Sobering Center']
+    div.container
+        div.row
+            div.col-md-6.col-md-offset-3
+                div.panel.panel-login
+                    div.panel-heading
+                        div.row
+                            div.col-xs-6
+                                if (status && status === 'login')
+                                    a(href="#" class="active" id="login-form-link") Login
+                                else
+                                    a(href="#" id="login-form-link") Login
+                                if (error != null && error.length > 0)
+                                    script.
+                                        $('#login-form-link').tooltip({
+                                            trigger: 'manual',
+                                            'placement': 'top',
+                                            'title': '#{error[0]}'
+                                        });
+                                        $('#login-form-link').tooltip('show');
+                                        $('body').click(function() {
+                                            $('.tooltip').hide();
+                                        });
+
+
+
+
+                            div.col-xs-6
+                                if (status && status === 'register')
+                                    a(href="#" id="register-form-link" class="active") Register
+                                else
+                                    a(href="#" id="register-form-link") Register
+
+                        hr
+                    div.panel-body
+                        div.row
+                            div.col-lg-12
+                                if (alertMessage)
+                                    script.
+                                        alert("Please login first!")
+                                //log in
+                                form(id="login-form" action="/accounts/login" method="POST" role="form" style="display: block;")
+                                    div.form-group
+                                        input(type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" required)
+                                    div.form-group
+                                        input(type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required)
+                                    div.form-group.text-center
+                                        input(type="checkbox" tabindex="3" class="" name="remember" id="remember")
+                                        label(for="remember") Remember Me
+                                    div.form-group
+                                        div.row
+                                            div.col-sm-6.col-sm-offset-3
+                                                input(type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In")
+                                    div.form-group
+                                        div.row
+                                            div.col-lg-12
+                                                div.text-center
+                                                    a(href="/" tabindex="5" class="forgot-password") Forgot Password?
+                                form(id="register-form" action="/accounts/register" method="POST" role="form" style="display: none;")
+                                    div.form-group
+                                        input(type="text" name="username" id="register_username"  tabindex="1" class="form-control" placeholder="Username" required)
+                                    div.form-group
+                                        input(type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" required)
+                                    div.form-group
+                                        //add name='selectpicker' to be showed in the req.body
+                                        select(class='selectpicker' data-live-search="true" title="Choose your center" data-width='100%' name="center" )
+                                            each item in centers
+                                                option(style='font-size:16px')=item
+                                    div.form-group
+                                        input(type="password" name="password" id="register_password" tabindex="2" class="form-control" placeholder="Password")
+                                    div.form-group
+                                        input(type="password" name="confirmPassword" id="confirmPassword" tabindex="2" class="form-control" placeholder="Confirm Password")
+                                    div.form-group
+                                        div.row
+                                            div.col-sm-6.col-sm-offset-3
+                                                input(type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now")
+                    if (register_message != null)
+                        script.
+                            $("#register-form").delay(100).fadeIn(100);
+                            $("#login-form").fadeOut(100);
+                            $('#register-form-link').tooltip({
+                            trigger: 'manual',
+                            'placement': 'top',
+                            'title': '#{register_message.userNameError}' + '#{register_message.passwordError}' + '#{register_message.verifyError}' + '#{register_message.emailError}' +'#{register_message.duplicateName}'
+                            });
+                            $('#register-form-link').tooltip('show');
+                            $('body').click(function () {
+                            $('.tooltip').hide();
+                            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

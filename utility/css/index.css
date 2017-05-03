@@ -1,0 +1,100 @@
+#map {
+    width:80%;
+    margin:auto;
+    margin-bottom: 100px;
+    height: 550px;
+}
+
+.lead {
+    font-weight: 400;
+    text-align: center;
+    font-size: 40px;
+    color: #34ad95;
+    margin-top: 10px;
+}
+
+.row {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+p {
+    margin: auto;
+    font-size: 25px;
+    font-weight: 500;
+    width: 70%;
+    line-height: 50px;
+}
+
+#map-section {
+    background: rgba(255, 255, 255, 1);
+    padding: 60px 50px 15px;
+    margin:0px 0px 0px;
+
+}
+#map-section {
+    padding: 0 0 60px 0;
+}
+#map-section .section-title {
+    background: #444 url(../img/birdview.jpg) center center no-repeat fixed;
+    background-size: cover;
+}
+#map-section .section-title p {
+    color: #fff;
+    font-size: 50px;
+    font-weight: 300;
+}
+
+#map-section .section-title .overlay {
+    padding: 110px 0;
+}
+#markerContent p{
+    width: 100%;
+    font-size: 14px;
+    line-height: 16px;
+}
+#centerName {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    font-size: 18px;
+    color: black;
+    line-height: 20px;
+}
+
+#centerCity {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 14px;
+    color: gray;
+    line-height: 16px;
+}
+
+.header{
+    height: 300px;
+    background-color: #34ad95;
+    margin: auto;
+    padding-top: 6%;
+    border: white 10px solid;
+}
+.col2 {
+    height: 300px;
+    background-color: rgba(52, 173, 149, 0.56);
+    border: white 10px solid;
+    padding-left: 50px;
+}
+
+.col3 {
+    height: 300px;
+    background-color: rgba(52, 173, 149, 0.56);
+    border: white 10px solid;
+    padding-left: 50px;
+}
+
+.col4 {
+    height: 300px;
+    background-color: rgba(52, 173, 149, 0.50);
+    border: white 10px solid;
+    padding-left: 50px;
+}

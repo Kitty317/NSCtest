@@ -1,0 +1,21 @@
+extends layout
+block name
+    -var title='Download'
+block style
+    link(rel="stylesheet" href="/css/db_download.css")
+
+block page
+    -var selected = 'Download'
+
+block content
+    div(class="jumbotron"  style="margin:150px 250px 50px; padding:20px 40px 30px;")
+        h5.lead Static Data
+        hr.my-4
+        p
+            a(href="files/static_data.csv" download) static_data.csv
+
+    div(class="jumbotron"  style="margin:20px 250px 50px; padding:20px 40px 30px;")
+        h5.lead Continuouse Data
+        hr.my-4
+        p
+            a(href="files/continuous_data.csv" download) continuous_data.csv

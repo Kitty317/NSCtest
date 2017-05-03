@@ -1,0 +1,26 @@
+extends layout
+block name
+    -var title='Database'
+block style
+    link(rel="stylesheet" href="/css/database.css")
+block page
+    -var selected='Database'
+block content
+    div.container
+            div.col-md-6.col-md-offset-3
+                div.panel.panel-database
+                        div.row
+                            div.col-sm-6.col-sm-offset-3
+                                a(class="form-control btn btn-update" href="/database/update") Update database
+                        hr
+                        div.row
+                            div.col-lg-12
+                                div.row
+                                    div.col-sm-6.col-sm-offset-3
+                                        a(class="form-control btn btn-view" href="/database/view") View database
+                        hr
+                        div.row
+                            div.col-lg-12
+                                div.row
+                                    div.col-sm-6.col-sm-offset-3
+                                        a(class="form-control btn btn-download" href="/database/download") Download database

@@ -1,0 +1,31 @@
+extends layout
+block name
+    -var title='Home'
+block style
+    script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTZW-BFGz363xgOQ56pAyq4iCrCGlSiGc")
+    script(src='/js/index.js')
+    link(rel="stylesheet", href="/css/index.css")
+
+
+block page
+    -var selected = 'Home'
+
+block content
+                header#header
+                    .intro
+                        .overlay
+                            .container
+                                .row
+                                    .intro-text
+                                        p
+                                            | National Sobering Collaborative (NSC) provides an alternative place where intoxicated citizen (frequently homeless) are observed for safe sobering instead of jails, emergency departments or homeless shelters.
+                                        a.btn.btn-custom.btn-lg.page-scroll(href='#map-section') View Map
+
+                    #recent-news
+
+                    #map-section
+                        .section-title.text-center.center
+                            .overlay
+                                p Our sobering centers are across the country
+                        .container
+                            div#map

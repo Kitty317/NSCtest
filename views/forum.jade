@@ -1,0 +1,84 @@
+extends layout
+block name
+    -var title='Forum'
+block style
+    link(rel="stylesheet" href="/css/blog.css")
+
+block page
+    -var selected = 'Forum'
+
+block content
+    -var centers = {'Yukon Kuskokwim Health Corporation Sobering Center':'#', 'Volunteers of America Sobering Center/Serial Inebriate Program':'#', 'San Francisco Sobering Center':'#','Santa Barbara Community Sobering Center':'#','El Paso County Community Detoxification Facility':'#','Milestone Foundation':'#','CASPAR Inc. Emergency Services Center':'#','MOC Triage/Assessment Center':'#','CARE Connection Sobering Center':'#','Metropolitan Assessment and Treatment Services (MATS)': '#','Willamette Family Sobering Station/Buckley Center':'#','Central City Concern Sobering Station':'#' ,'Room in the Inn':'#','Dallas Serial Inebriate Program':'#','Star of Hope/Houston Recovery Center':'#' ,'Dutch Shisler Sobering Support Center':'#','Sobering Center of Tacoma (MDC)':'#'}
+    -var size = Object(centers).length
+    div.container
+        div.row
+            div.col-md-8
+                div(class="jumbotron"  style="margin:150px 0px 20px; padding:15px 30px 15px;")
+                    div.news-title
+                        h2.lead.text-left 2017 Second Annual Sobering Summit
+                    div.author-date
+                        h5 Shannon Smith Bernardin - Thursday, February 09, 2017
+                    hr.my-4
+                    p ...
+                    div(class="row" style="padding: 15px 30px;")
+                        div.readmore Read more ...
+                        div.comment
+                            i(class="fa fa-commenting-o" aria-hidden="true") Comment
+                        div.like
+                            i(class="fa fa-thumbs-o-up" aria-hidden="true") Like
+                        div.favorite
+                            i(class="fa fa-heart-o" aria-hidden="true") Favorite
+
+                div(class="jumbotron"  style="margin:20px 0px 20px; padding:15px 30px 15px;")
+                    div.news-title
+                        h2.lead.text-left Summit on May 15th in DC!
+                    div.author-date
+                        h5 Shannon Smith Bernardin - Thursday, February 09, 2017
+                    hr.my-4
+                    p ...
+                    div(class="row" style="padding: 15px 30px;")
+                        div.readmore Read more ...
+                        div.comment
+                            i(class="fa fa-commenting-o" aria-hidden="true") Comment
+                        div.like
+                            i(class="fa fa-thumbs-o-up" aria-hidden="true") Like
+                        div.favorite
+                            i(class="fa fa-heart-o" aria-hidden="true") Favorite
+
+                div(class="jumbotron"  style="margin:20px 0px 20px; padding:15px 30px 15px;")
+                    div.news-title
+                        h2.lead.text-left National Sobering Collaborative's website launch
+                    div.author-date
+                        h5 Shannon Smith Bernardin - Thursday, February 09, 2017
+                    hr.my-4
+                    p ...
+                    div(class="row" style="padding: 15px 30px;")
+                        div.readmore Read more ...
+                        div.comment
+                            i(class="fa fa-commenting-o" aria-hidden="true") Comment
+                        div.like
+                            i(class="fa fa-thumbs-o-up" aria-hidden="true") Like
+                        div.favorite
+                            i(class="fa fa-heart-o" aria-hidden="true") Favorite
+
+                //Blog Sidebar Widgets Column
+            div.col-md-4
+                //Blog Search
+                div(class="jumbotron"  style="margin:150px 0px 20px; padding:15px 30px 15px;")
+                    h4 Search
+                    div.input-group
+                        input(type="text" class="form-control")
+                        span.input-group-btn
+                            button(class="btn btn-default" type="button")
+                                span(class="glyphicon glyphicon-search")
+
+                //Blog Categories
+                div(class="jumbotron"  style="margin:20px 0px 120px; padding:15px 30px 15px;")
+                    h4 Centers:
+                    div.row
+                        ul.list-unstyled
+                            each val, key in centers
+                                    li
+                                        a(href=val)=key
+                                   // hr.hr-side-bar
+

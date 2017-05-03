@@ -1,0 +1,636 @@
+extends layout
+block name
+    -var title='Update'
+block style
+    <script src="https://surveyjs.azureedge.net/0.12.5/survey.jquery.min.js"></script>
+    link(rel="stylesheet" href="/css/db_update.css")
+
+block page
+    -var selected = 'Database'
+block content
+    div.container
+        div.row
+            div.col-md-10.col-md-offset-1
+                div#surveyContainer
+    script.
+        var surveyJSON = {
+            pages: [
+                {
+                    name: "updateStaticData",
+                    navigationButtonsVisibility: "iherit",
+                    questions: [
+                        {
+                            type: "radiogroup",
+                            indent: 1,
+                            name: "updateStatic",
+                            title: "Do you need to update static data?",
+                            isRequired: true,
+                            choices: ["Yes", "No"],
+                            colCount: 0
+                        }],
+                    title: "Update Static Data"
+                },
+                {
+                    name: "staticData1",
+                    navigationButtonsVisibility: "iherit",
+                    questions: [
+                        {
+                            type: "dropdown",
+                            choices:
+                                [
+                                    'CARE Connection Sobering Center',
+                                    'CASPAR Inc. Emergency Services Center',
+                                    'Central City Concern Sobering Station',
+                                    'Dallas Serial Inebriate Program',
+                                    'Dutch Shisler Sobering Support Center',
+                                    'El Paso County Community Detoxification Facility',
+                                    'MOC Triage/Assessment Center',
+                                    'Metropolitan Assessment and Treatment Services (MATS)',
+                                    'Milestone Foundation',
+                                    'Room in the Inn',
+                                    'San Francisco Sobering Center',
+                                    'Santa Barbara Community Sobering Center',
+                                    'Sobering Center of Tacoma (MDC)',
+                                    'Star of Hope/Houston Recovery Center',
+                                    'Volunteers of America Sobering Center/Serial Inebriate Program',
+                                    'Willamette Family Sobering Station/Buckley Center',
+                                    'Yukon Kuskokwim Health Corporation Sobering Center'
+                                ],
+                            indent: 1,
+                            colCount: 0,
+                            visibleIf: "{updateStatic}='Yes'",
+                            name: "centerName",
+                            title: "Name of Center: "
+                        },
+                        {
+                            type: "text",
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            inputType: "url",
+                            name: "website",
+                            title: "Website: "
+                        },
+                        {
+                            type: "text",
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            name: "address",
+                            title: "Address of center: "
+                        },
+                        {
+                            type: "text",
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            inputType: "tel",
+                            name: "phone",
+                            title: "Phone number: "
+                        },
+                        {
+                            type: "text",
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            name: "director",
+                            title: "Director: "
+                        },
+                        {
+                            type: "text",
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            name: "contactPerson",
+                            title: "Contact Person: "
+                        }],
+                    title: "Static Data: Basic Information"
+                },
+                {
+                    name: "staticData2",
+                    questions: [
+                        {
+                            type: "checkbox",
+                            choices: [
+                                {
+                                    value: "city/county",
+                                    text: "City/county"
+                                },
+                                {
+                                    value: "state",
+                                    text: "State"
+                                },
+                                {
+                                    value: "charity",
+                                    text: "Charity"
+                                },
+                                {
+                                    value: "religious charity",
+                                    text: "Religious Charity"
+                                },
+                                {
+                                    value: "private/other",
+                                    text: "Private/other"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            name: "financialSupport",
+                            title: "Financial Support: (Click all that apply): "
+                        },
+                        {
+                            type: "text",
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            inputType: "number",
+                            name: "annualBudget",
+                            title: "Annual Budget($): "
+                        },
+                        {
+                            type: "checkbox",
+                            choices: [
+                                {
+                                    value: "medical director",
+                                    text: "Medical director"
+                                },
+                                {
+                                    value: "MD on call",
+                                    text: "MD on call"
+                                },
+                                {
+                                    value: "RN on site",
+                                    text: "RN on site"
+                                },
+                                {
+                                    value: "EMT/paramedic on site",
+                                    text: "EMT/Paramedic on site"
+                                },
+                                {
+                                    value: "case managers/recovery specialists",
+                                    text: "Case managers/recovery specialists"
+                                },
+                                {
+                                    value: "administrative/secretarial support",
+                                    text: "Administrative/Secretarial support"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            name: "employedStaff",
+                            title: "Employed Staff: (Click all that apply): "
+                        },
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "24/7",
+                                    text: "24/7"
+                                }],
+                            hasOther: true,
+                            indent: 1,
+                            colCount: 0,
+                            visibleIf: "{updateStatic}='Yes'",
+                            name: "operationHours:",
+                            title: "Hours of operation: "
+                        },
+                        {
+                            type: "checkbox",
+                            choices: [
+                                {
+                                    value: "EMS",
+                                    text: "EMS"
+                                },
+                                {
+                                    value: "police",
+                                    text: "Police"
+                                },
+                                {
+                                    value: "shelters",
+                                    text: "Shelters"
+                                },
+                                {
+                                    value: "walk in",
+                                    text: "Walk In"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            name: "referringParties",
+                            title: "Referring Parties i.e. Who brings you or sends you clients: (click all that apply): "
+                        },
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "yes",
+                                    text: "Yes"
+                                },
+                                {
+                                    value: "no",
+                                    text: "No"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            colCount: 0,
+                            name: "pickupsFromStreet",
+                            title: "Do you do pick ups from the street: "
+                        },
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "yes",
+                                    text: "Yes"
+                                },
+                                {
+                                    value: "no",
+                                    text: "No"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            colCount: 0,
+                            name: "measureAlcoholLevels",
+                            title: "Do you measure alcohol levels (breathalyzer): "
+                        }],
+                    title: "Static Data: Operational Information"
+                },
+                {
+                    name: "staticData3",
+                    questions: [
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "yes",
+                                    text: "Yes"
+                                },
+                                {
+                                    value: "no",
+                                    text: "No"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            colCount: 0,
+                            name: "caseManagement",
+                            title: "Case Management: "
+                        },
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "yes",
+                                    text: "Yes"
+                                },
+                                {
+                                    value: "no",
+                                    text: "No"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            colCount: 0,
+                            name: "housingReferrals",
+                            title: "Housing Referrals: "
+                        },
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "yes",
+                                    text: "Yes"
+                                },
+                                {
+                                    value: "no",
+                                    text: "No"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            colCount: 0,
+                            name: "accesstoMedicalorPsychiatricCare",
+                            title: "Access to medical or psychiatric care: "
+                        },
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "yes",
+                                    text: "Yes"
+                                },
+                                {
+                                    value: "no",
+                                    text: "No"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            colCount: 0,
+                            name: "medicationsDispensed",
+                            title: "Medications dispensed: "
+                        },
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "yes",
+                                    text: "Yes"
+                                },
+                                {
+                                    value: "no",
+                                    text: "No"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            colCount: 0,
+                            name: "IVFluids",
+                            title: "IV Fluids: "
+                        },
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "yes",
+                                    text: "Yes"
+                                },
+                                {
+                                    value: "no",
+                                    text: "No"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            colCount: 0,
+                            name: "food",
+                            title: "Food: "
+                        },
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "yes",
+                                    text: "Yes"
+                                },
+                                {
+                                    value: "no",
+                                    text: "No"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            colCount: 0,
+                            name: "showers",
+                            title: "Showers: "
+                        },
+                        {
+                            type: "radiogroup",
+                            choices: [
+                                {
+                                    value: "yes",
+                                    text: "Yes"
+                                },
+                                {
+                                    value: "no",
+                                    text: "No"
+                                }],
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            colCount: 0,
+                            name: "laundry",
+                            title: "Laundry: "
+                        },
+                        {
+                            type: "text",
+                            indent: 1,
+                            visibleIf: "{updateStatic}='Yes'",
+                            inputType: "number",
+                            name: "averageStayLength",
+                            title: "Average length of stay for each visit for the above time period(hours): "
+                        }],
+                    title: "Static Data: Services Offered"
+                },
+                {
+                    name: "continuousData1",
+                    questions: [
+                        {
+                            type: "text",
+                            indent: 1,
+                            inputType: "date",
+                            name: "fromDate",
+                            title: "Enter the dates for which this data includes: (From:) "
+                        },
+                        {
+                            type: "text",
+                            indent: 1,
+                            inputType: "date",
+                            name: "toDate",
+                            title: "Enter the dates for which this data includes: (To:) "
+                        }],
+                    title: "Continuous Data: Date Range"
+                },
+                {
+                    name: "continuousData2",
+                    questions: [
+                        {
+                            type: "text",
+                            indent: 1,
+                            inputType: "number",
+                            name: "encounters",
+                            title: "Encounters i.e. The number of visits you saw in the above date range: "
+                        },
+                        {
+                            type: "text",
+                            indent: 1,
+                            inputType: "number",
+                            name: "uniqueIndividuals",
+                            title: "Unique Individuals i.e. The number of unique people you saw in the above date range: "
+                        }],
+                    title: "Continuous Data: Census"
+                },
+                {
+                    name: "continuousData3",
+                    questions: [
+                        {
+                            type: "multipletext",
+                            colCount: 2,
+                            indent: 1,
+                            items: [
+                                {
+                                    name: "male",
+                                    title: "Male"
+                                },
+                                {
+                                    name: "female",
+                                    title: "Female"
+                                }],
+                            name: "gender",
+                            title: "Gender for above time period: (% or number): "
+                        },
+                        {
+                            type: "multipletext",
+                            colCount: 4,
+                            indent: 1,
+                            items: [
+                                {
+                                    name: "white",
+                                    title: "White"
+                                },
+                                {
+                                    name: "black",
+                                    title: "Black"
+                                },
+                                {
+                                    name: "asian",
+                                    title: "Asian"
+                                },
+                                {
+                                    name: "otherRace",
+                                    title: "Other"
+                                }],
+                            name: "race",
+                            title: "Race for the above time period: (% or number): "
+                        },
+                        {
+                            type: "multipletext",
+                            colCount: 2,
+                            indent: 1,
+                            items: [
+                                {
+                                    name: "hispanic",
+                                    title: "Hispanic"
+                                },
+                                {
+                                    name: "nonHispanic",
+                                    title: "non-Hispanic"
+                                }],
+                            name: "ethnicity",
+                            title: "Ethnicity for the above time period: (% or number): "
+                        },
+                        {
+                            type: "multipletext",
+                            colCount: 3,
+                            indent: 1,
+                            items: [
+                                {
+                                    name: "homelessCurrently",
+                                    title: "Homeless currently"
+                                },
+                                {
+                                    name: "homelessLastYear",
+                                    title: "Homeless in the last year"
+                                },
+                                {
+                                    name: "supportiveHousing",
+                                    title: "Supportive Housing"
+                                }],
+                            name: "housing",
+                            title: "Housing for the above time period: (% or number): "
+                        },
+                        {
+                            type: "text",
+                            indent: 1,
+                            inputType: "number",
+                            name: "breathAlcohol",
+                            title: "Breath Alcohol Level: (Entry can be either mean or a range)"
+                        }],
+                    title: "Continuous Data: Demographics"
+                },
+                {
+                    name: "ContinuousData4",
+                    questions: [
+                        {
+                            type: "multipletext",
+                            indent: 1,
+                            items: [
+                                {
+                                    name: "streetPrivate",
+                                    title: "Street or private"
+                                },
+                                {
+                                    name: "shelter",
+                                    title: "Shelter"
+                                },
+                                {
+                                    name: "detoxRehabProgram",
+                                    title: "Detox/Rehab Program"
+                                },
+                                {
+                                    name: "jail",
+                                    title: "Jail"
+                                },
+                                {
+                                    name: "hospital",
+                                    title: "Hospital"
+                                }],
+                            name: "dischargeDestination",
+                            title: "Discharge destination for the above time period: (% or number): "
+                        },
+                        {
+                            type: "multipletext",
+                            colCount: 4,
+                            indent: 1,
+                            items: [
+                                {
+                                    name: "death",
+                                    title: "Death"
+                                },
+                                {
+                                    name: "hospitalization",
+                                    title: "Hospitalization"
+                                },
+                                {
+                                    name: "arrests",
+                                    title: "Arrests"
+                                },
+                                {
+                                    name: "alcoholWithdrawal",
+                                    title: "Alcohol withdrawal"
+                                }],
+                            name: "complications",
+                            title: "Complications for the above time period: (% or number): "
+                        },
+                        {
+                            type: "multipletext",
+                            colCount: 3,
+                            indent: 1,
+                            items: [
+                                {
+                                    name: "caseManagement",
+                                    title: "Case management"
+                                },
+                                {
+                                    name: "detoxRehabServices",
+                                    title: "Detox or rehab services"
+                                },
+                                {
+                                    name: "housingServices",
+                                    title: "Housing services"
+                                }],
+                            name: "servicesUtilized",
+                            title: "Services utilized for the above time period: (% or number): "
+                        }],
+                    title: "Continuous Data: Outcomes"
+                }],
+            sendResultOnPageNext: true,
+            showPageNumbers: true,
+            showProgressBar: "bottom",
+            completedHtml: "<h3 class='complete'>You have successfully updated your database!</h3>"
+        }
+
+        Survey.defaultBootstrapCss.navigationButton = "btn";
+        Survey.Survey.cssType = "bootstrap";
+        var survey = new Survey.Model(surveyJSON);
+        var data = { updateStatic: "Yes", centerName: "CARE Connection Sobering Center", website: "AAA", address: "AAA", phone: "12345", director: "AAA", contactPerson: "AAA",
+            financialSupport: ["city/county"], annualBudget: 12345, employedStaff: ["medical director"],
+            operationHours: "24/7", referringParties: ["EMS"], pickupsFromStreet: "yes", measureAlcoholLevels: "yes",
+            caseManagement: "yes", housingReferrals: "yes", accesstoMedicalorPsychiatricCare: "yes", medicationsDispensed: "yes",
+            IVFluids: "yes", food: "yes", showers: "yes", laundry: "yes", averageStayLength: 123,
+            fromDate: "2017-01-01", toDate: "2017-01-01", encounters: 123, uniqueIndividuals: 123,
+            gender: {male: "123", female: "123"},
+            race: {white: "123", black: "123", asian: "123", otherRace: "123"},
+            ethnicity: {hispanic:"123", nonHispanic: "123"},
+            housing: {homelessCurrently: "123", homelessLastYear: "123", supportiveHousing: "123"},
+            breathAlcohol: 123,
+            dischargeDestination: { streetPrivate: "123", shelter: "123", detoxRehabProgram: "123", jail: "123", hospital: "123"},
+            complications: { death: "123", hospitalization: "123", arrests: "123", alcoholWithdrawal: "123"},
+            servicesUtilized: { caseManagement: "123", detoxRehabServices: "123", housingServices: "123"} };
+
+        $("#surveyContainer").Survey({
+            model: survey,
+            data: data,
+            onComplete: sendDataToServer
+        });
+
+
+        function sendDataToServer(survey) {
+            //var resultAsString = JSON.stringify(survey.data);
+            //alert(resultAsString);
+            //console.log(survey.data);
+            $.post('/database/insert', { data: JSON.stringify(survey.data) }, function (response) { });
+        };

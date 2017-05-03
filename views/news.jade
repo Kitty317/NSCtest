@@ -1,0 +1,17 @@
+extends layout
+block name
+    -var title='News'
+block style
+    script(src="/js/news.js")
+    link(href="/css/basic.css" rel="styleSheet")
+    link(href="/css/news.css" rel="styleSheet")
+
+block page
+    -var selected='News'
+block content
+    div.row
+        div.col-md-10
+        div.col-md-2
+            div.new
+                a.btn.btn-custom.btn-lg.page-scroll.login-button(href='update') New
+    div.news
